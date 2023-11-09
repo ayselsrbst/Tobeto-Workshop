@@ -1,50 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/data/questions.dart';
+import 'package:quiz_app/start_screen.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      home: QuestionScreen(),
-    ),
-  );
+  runApp(MyApp());
 }
 
-class QuestionScreen extends StatefulWidget {
-  @override
-  _QuestionScreenState createState() => _QuestionScreenState();
-}
-
-class _QuestionScreenState extends State<QuestionScreen> {
-  int questionNumber = 0;
-
-  void changeQuestion() {
-    setState(() {
-      questionNumber = (questionNumber + 1) % questions.length;
-    });
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Quiz Uygulaması'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(questions[questionNumber].question),
-            ...questions[questionNumber].answers.map((answer) {
-              return ElevatedButton(
-                onPressed: () {
-                  changeQuestion();
-                },
-                child: Text(answer),
-              );
-            })
-          ],
-        ),
-      ),
+    return MaterialApp(
+      home: StartScreen(),
     );
-  }
-}
